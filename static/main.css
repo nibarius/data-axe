@@ -1,0 +1,25 @@
+body {
+    background-color: #fafafa;
+    text-align: center;
+}
+p {
+    font-size: xx-large;
+    color: #222;
+}
+p.title {
+    font-size: large;
+    margin: 0;
+    background-color: #AED581;
+    line-height: 1.5em;
+}
+p.example {
+    font-size: 100%;
+    font-family: monospace;
+}
+div.card {
+    background-color: white;
+    border: 1px solid #eee;
+    margin: 5em 2em auto;
+    width: 400px;
+    display: inline-block;
+}
