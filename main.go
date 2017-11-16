@@ -3,6 +3,7 @@ package dataaxe
 import (
 	"fmt"
 	"net/http"
+	"github.com/microcosm-cc/bluemonday"
 )
 
 const (
@@ -41,8 +42,8 @@ func httpHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func codeNameHandler(w http.ResponseWriter, r *http.Request, theType string) {
-	code := r.URL.Query()[CODE_PARAMETER]
-	name := r.URL.Query()[NAME_PARAMETER]
+	code := sanitize(r.URL.Query()[CODE_PARAMETER])
+	name := sanitize(r.URL.Query()[NAME_PARAMETER])
 	html, err := doCodeNameLookup(theType, code, name)
 	if err != nil {
 		fmt.Fprint(w, getInstructionsDocument())
@@ -52,7 +53,7 @@ func codeNameHandler(w http.ResponseWriter, r *http.Request, theType string) {
 }
 
 func timestampHandler(w http.ResponseWriter, r *http.Request) {
-	ts := r.URL.Query()[TIMESTAMP_PARAMETER]
+	ts := sanitize(r.URL.Query()[TIMESTAMP_PARAMETER])
 	if ts == nil {
 		fmt.Fprint(w, getInstructionsDocument())
 		return
@@ -65,4 +66,16 @@ func timestampHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Fprint(w, html)
+}
+
+func sanitize(in []string) []string {
+	if in == nil {
+		return nil
+	}
+	out := make([]string, 0, len(in))
+	sanitizer := bluemonday.StrictPolicy()
+	for _, v := range in {
+		out = append(out, sanitizer.Sanitize(v))
+	}
+	return out
 }
