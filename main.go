@@ -19,6 +19,7 @@ func init() {
 	http.HandleFunc("/mcc", mccHandler)
 	http.HandleFunc("/http", httpHandler)
 	http.HandleFunc("/ts", timestampHandler)
+	http.HandleFunc("/api", apiHandler)
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -39,6 +40,10 @@ func mccHandler(w http.ResponseWriter, r *http.Request) {
 
 func httpHandler(w http.ResponseWriter, r *http.Request) {
 	codeNameHandler(w, r, TYPE_HTTP_STATUS)
+}
+
+func apiHandler(w http.ResponseWriter, r *http.Request) {
+	codeNameHandler(w, r, TYPE_ANDROID_API_LEVEL)
 }
 
 func codeNameHandler(w http.ResponseWriter, r *http.Request, theType string) {

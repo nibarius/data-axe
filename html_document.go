@@ -43,6 +43,7 @@ const instructionsDocument = `<!doctype html>
 <body>
   <div class="card">
     <p class="title">Try one of these</p>
+    <p class="example"><a href="/api?code=21">/api?code=21</a></p>
     <p class="example"><a href="/mcc?code=410">/mcc?code=410</a></p>
     <p class="example"><a href="/http?code=451">/http?code=451</a></p>
     <p class="example"><a href="/ts?t=1323782116">/ts?t=1323782116</a></p>

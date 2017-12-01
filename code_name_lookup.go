@@ -10,11 +10,12 @@ type codeNamePair struct {
 }
 
 const (
-	TYPE_LANGUAGE    = "Language"
-	TYPE_COUNTRY     = "Country"
-	TYPE_MCC         = "MCC"
-	TYPE_HTTP_STATUS = "HTTP"
-	LOOKUP_BY_CODE   = iota
+	TYPE_LANGUAGE          = "Language"
+	TYPE_COUNTRY           = "Country"
+	TYPE_MCC               = "MCC"
+	TYPE_HTTP_STATUS       = "HTTP"
+	TYPE_ANDROID_API_LEVEL = "Android API level"
+	LOOKUP_BY_CODE         = iota
 	LOOKUP_BY_NAME
 )
 
@@ -35,6 +36,8 @@ func getPageTitle(theType string) (title string) {
 	switch theType {
 	case TYPE_HTTP_STATUS:
 		title = "HTTP status codes"
+	case TYPE_ANDROID_API_LEVEL:
+		title = "Android API levels"
 	default:
 		title = theType + " codes"
 	}
@@ -67,6 +70,10 @@ func addCards(theType string, method int, from []string, to []cardParameters) []
 		haystack = httpStatusCodes
 		codeTitle = "HTTP status code"
 		nameTitle = "Name"
+	case TYPE_ANDROID_API_LEVEL:
+		haystack = androidApiLevels
+		codeTitle = theType
+		nameTitle = "Android version"
 	}
 
 	for _, value := range from {
@@ -83,7 +90,7 @@ func addCards(theType string, method int, from []string, to []cardParameters) []
 				var body1 string
 				switch theType {
 				case TYPE_HTTP_STATUS:
-					body1 ="<a href=\"https://httpstatuses.com/" + codeName.code + "\">" + codeName.code +"</a>"
+					body1 = "<a href=\"https://httpstatuses.com/" + codeName.code + "\">" + codeName.code + "</a>"
 				default:
 					body1 = codeName.code
 

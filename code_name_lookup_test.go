@@ -299,3 +299,31 @@ func TestHttpLookup(t *testing.T) {
 		t.Errorf("Search http by code failed, expected\n" + expected + "\ngot\n" + lookup)
 	}
 }
+
+func TestApiLevelLookup(t *testing.T) {
+	expected := `<!doctype html>
+<html>
+  <title>Android API levels</title>
+  <link rel="stylesheet" type="text/css" href="/static/main.css">
+</head>
+<body>
+  <div class="card">
+    <p class="title">Android API level</p>
+    <p>21</p>
+    <p class="title">Android version</p>
+    <p>Android 5.0</p>
+  </div><div class="card">
+    <p class="title">Android API level</p>
+    <p>1</p>
+    <p class="title">Android version</p>
+    <p>Android 1.0</p>
+  </div>
+</body>
+</html>
+`
+
+	lookup, _ := doCodeNameLookup(TYPE_ANDROID_API_LEVEL, []string{"21"}, []string{"Android 1.0"})
+	if lookup != expected {
+		t.Errorf("Search http by code failed, expected\n" + expected + "\ngot\n" + lookup)
+	}
+}
