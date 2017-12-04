@@ -7,6 +7,10 @@ import (
 )
 
 func timestampToDate(timestampString string) (string, error) {
+	if timestampString == "now" {
+		timestampString = strconv.FormatInt(time.Now().Unix(), 10)
+	}
+
 	timestamp, err := strconv.ParseInt(timestampString, 10, 64)
 	if err != nil {
 		return "", errors.New(timestampString + " is not a valid timestamp")
