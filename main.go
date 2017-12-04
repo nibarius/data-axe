@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"github.com/microcosm-cc/bluemonday"
+	"strings"
 )
 
 const (
@@ -63,7 +64,7 @@ func timestampHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, getInstructionsDocument())
 		return
 	}
-	html, err := timestampToDate(ts[0])
+	html, err := timestampToDate(strings.TrimSpace(ts[0]))
 
 	if err != nil {
 		fmt.Fprint(w, getInstructionsDocument())

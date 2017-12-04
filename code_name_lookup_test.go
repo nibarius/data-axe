@@ -156,6 +156,34 @@ func TestTwoLanguagesCommaSeparatedLookup(t *testing.T) {
 	}
 }
 
+func TestTwoLanguagesCommaSeparatedWithSpaceLookup(t *testing.T) {
+	expected := `<!doctype html>
+<html>
+  <title>Language codes</title>
+  <link rel="stylesheet" type="text/css" href="/static/main.css">
+</head>
+<body>
+  <div class="card">
+    <p class="title">Language code</p>
+    <p>se</p>
+    <p class="title">Language name</p>
+    <p>Northern Sami</p>
+  </div><div class="card">
+    <p class="title">Language code</p>
+    <p>sv</p>
+    <p class="title">Language name</p>
+    <p>Swedish</p>
+  </div>
+</body>
+</html>
+`
+
+	codeLookup, _ := doCodeNameLookup(TYPE_LANGUAGE, []string{"se , sv "}, nil)
+	if codeLookup != expected {
+		t.Errorf("Search language by code failed, expected\n" + expected + "\ngot\n" + codeLookup)
+	}
+}
+
 func TestThreeLanguagesLookup(t *testing.T) {
 	expected := `<!doctype html>
 <html>

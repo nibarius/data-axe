@@ -85,6 +85,7 @@ func addCards(theType string, method int, from []string, to []cardParameters) []
 			values = strings.Split(value, ",")
 		}
 		for _, expandedValue := range values {
+			expandedValue = strings.TrimSpace(expandedValue)
 			matches := search(haystack, expandedValue)
 			for _, codeName := range matches {
 				var body1 string
