@@ -15,6 +15,7 @@ const (
 	TYPE_MCC               = "MCC"
 	TYPE_HTTP_STATUS       = "HTTP"
 	TYPE_ANDROID_API_LEVEL = "Android API level"
+	TYPE_ASCII             = "ASCII"
 	LOOKUP_BY_CODE         = iota
 	LOOKUP_BY_NAME
 )
@@ -74,6 +75,9 @@ func addCards(theType string, method int, from []string, to []cardParameters) []
 		haystack = androidApiLevels
 		codeTitle = theType
 		nameTitle = "Android version"
+	case TYPE_ASCII:
+		haystack = ascii
+		nameTitle = "Character name"
 	}
 
 	for _, value := range from {

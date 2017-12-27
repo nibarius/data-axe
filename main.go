@@ -21,6 +21,7 @@ func init() {
 	http.HandleFunc("/http", httpHandler)
 	http.HandleFunc("/ts", timestampHandler)
 	http.HandleFunc("/api", apiHandler)
+	http.HandleFunc("/ascii", asciiHandler)
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -45,6 +46,10 @@ func httpHandler(w http.ResponseWriter, r *http.Request) {
 
 func apiHandler(w http.ResponseWriter, r *http.Request) {
 	codeNameHandler(w, r, TYPE_ANDROID_API_LEVEL)
+}
+
+func asciiHandler(w http.ResponseWriter, r *http.Request) {
+	codeNameHandler(w, r, TYPE_ASCII)
 }
 
 func codeNameHandler(w http.ResponseWriter, r *http.Request, theType string) {
