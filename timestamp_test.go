@@ -1,4 +1,4 @@
-package dataaxe
+package main
 
 import (
 	"testing"

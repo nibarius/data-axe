@@ -1,4 +1,4 @@
-package dataaxe
+package main
 
 var httpStatusCodes = []codeNamePair{
 	{"100", "Continue"},

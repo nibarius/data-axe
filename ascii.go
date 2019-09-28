@@ -1,4 +1,4 @@
-package dataaxe
+package main
 
 var ascii = []codeNamePair{
 	{"0", "NUL nul"},

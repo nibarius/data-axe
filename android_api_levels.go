@@ -1,4 +1,4 @@
-package dataaxe
+package main
 
 var androidApiLevels = []codeNamePair{
 	{"27", "Android 8.1"},

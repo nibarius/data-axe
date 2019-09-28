@@ -1,4 +1,4 @@
-package dataaxe
+package main
 
 var mccs = []codeNamePair{
 	{"289",	"Abkhazia"},
